@@ -10,6 +10,7 @@
 6. Do not describe net departures as proven lost rides, revenue, or rebalancing moves. The table lacks inventory snapshots, capacity, outage duration, blocked demand, and operator move records.
 7. Keep one canonical set of confirmed numbers and update every document and chart when any number changes.
 8. Only record a human check in `Other/audit_log.md` after Spencer reviews and approves the entry.
+9. Use available links, query jobs, repository files, and connected tools before asking Spencer to repeat work or paste information again.
 
 ## Project facts
 
