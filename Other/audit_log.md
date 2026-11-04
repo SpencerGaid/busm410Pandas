@@ -8,15 +8,7 @@ Each official entry is a time Spencer checked the AI agent's work, grouped by th
 | [Verified a claim](#verified-a-claim) | Spencer checked a claim against documentation or data. | 0 |
 | [Separated fact from opinion](#separated-fact-from-opinion) | Spencer asked whether a claim was documented or inferred. | 0 |
 | [Changed the analysis](#changed-the-analysis) | Spencer's judgment changed the method or framing. | 0 |
-| [Improved the agent's instructions](#improved-the-agents-instructions) | Spencer corrected how the agent is told to work. | 0 |
-
-## Proposed entry awaiting Spencer's approval
-
-This proposal is not counted above and is not yet an official audit entry.
-
-| Proposed # | Date | Category | What the AI said or did | How Spencer checked it | Result |
-|---|---|---|---|---|---|
-| 1 | 2026-11-03 | Improved the agent's instructions | Asked Spencer to paste the BigQuery results even though Spencer had already shared the completed job and asked for help. | Spencer replied, “that is why i need your help bro,” making clear that the agent should retrieve the result and carry the assignment forward. | The agent took ownership of the result retrieval, analysis, documentation, visual, and GitHub review branch. The standing instructions now tell agents to use available evidence before asking Spencer to repeat work. |
+| [Improved the agent's instructions](#improved-the-agents-instructions) | Spencer corrected how the agent is told to work. | 1 |
 
 ## Caught an error
 
@@ -42,4 +34,5 @@ This proposal is not counted above and is not yet an official audit entry.
 
 | # | Date | What the AI said or did | How Spencer checked it | Result |
 |---|---|---|---|---|
+| 1 | 2026-11-03 | Asked Spencer to paste the BigQuery results even though Spencer had already shared the completed job and asked for help. | Spencer replied, “that is why i need your help bro,” making clear that the agent should retrieve the result and carry the assignment forward. | **Improved.** The agent took ownership of the result retrieval, analysis, documentation, visual, and GitHub review branch. The standing instructions now tell agents to use available evidence before asking Spencer to repeat work. Spencer approved this entry on 2026-11-03. |
 

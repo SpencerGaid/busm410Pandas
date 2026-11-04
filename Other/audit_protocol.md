@@ -1,6 +1,6 @@
 # Audit Protocol
 
-> **Approval status:** Drafted for Spencer's review on 2026-11-03. It becomes the team's active protocol after Spencer approves it.
+> **Approval status:** Approved by Spencer on 2026-11-03.
 
 ## Purpose
 
