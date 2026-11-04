@@ -1,0 +1,45 @@
+# Audit Log
+
+Each official entry is a time Spencer checked the AI agent's work, grouped by the kind of check. Entry numbers remain stable when entries move.
+
+| Category | What it means | Approved entries |
+|---|---|---:|
+| [Caught an error](#caught-an-error) | The agent was wrong, and Spencer found it. | 0 |
+| [Verified a claim](#verified-a-claim) | Spencer checked a claim against documentation or data. | 0 |
+| [Separated fact from opinion](#separated-fact-from-opinion) | Spencer asked whether a claim was documented or inferred. | 0 |
+| [Changed the analysis](#changed-the-analysis) | Spencer's judgment changed the method or framing. | 0 |
+| [Improved the agent's instructions](#improved-the-agents-instructions) | Spencer corrected how the agent is told to work. | 0 |
+
+## Proposed entry awaiting Spencer's approval
+
+This proposal is not counted above and is not yet an official audit entry.
+
+| Proposed # | Date | Category | What the AI said or did | How Spencer checked it | Result |
+|---|---|---|---|---|---|
+| 1 | 2026-11-03 | Improved the agent's instructions | Asked Spencer to paste the BigQuery results even though Spencer had already shared the completed job and asked for help. | Spencer replied, “that is why i need your help bro,” making clear that the agent should retrieve the result and carry the assignment forward. | The agent took ownership of the result retrieval, analysis, documentation, visual, and GitHub review branch. The standing instructions now tell agents to use available evidence before asking Spencer to repeat work. |
+
+## Caught an error
+
+| # | Date | What the AI said or did | How Spencer checked it | Result |
+|---|---|---|---|---|
+
+## Verified a claim
+
+| # | Date | What the AI said or did | How Spencer checked it | Result |
+|---|---|---|---|---|
+
+## Separated fact from opinion
+
+| # | Date | What the AI said or did | How Spencer checked it | Result |
+|---|---|---|---|---|
+
+## Changed the analysis
+
+| # | Date | What the AI said or did | How Spencer checked it | Result |
+|---|---|---|---|---|
+
+## Improved the agent's instructions
+
+| # | Date | What the AI said or did | How Spencer checked it | Result |
+|---|---|---|---|---|
+

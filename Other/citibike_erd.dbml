@@ -1,0 +1,47 @@
+// Conceptual analysis-flow diagram for the CP1 Citi Bike station-gap query.
+// The project uses one physical source table and derived CTEs, so arrows are
+// transformations rather than joins between separate source tables.
+
+Table citibike_trips {
+  starttime datetime [note: 'Trip start; sets the analysis period']
+  stoptime datetime [note: 'Trip stop; used in time-quality checks']
+  tripduration integer [note: 'Reported seconds']
+  start_station_id integer [note: 'Becomes the departure station_id']
+  start_station_name string
+  end_station_id integer [note: 'Becomes the arrival station_id']
+  end_station_name string
+  bikeid integer [note: 'Supports duplicate checks']
+
+  Note: 'Physical BigQuery table. One row is one recorded trip.'
+}
+
+Table station_events {
+  station_id integer [not null, note: 'Copied from start_station_id or end_station_id']
+  station_name string [note: 'Copied from the matching endpoint label']
+  is_departure boolean [not null, note: 'TRUE for trip start; FALSE for trip end']
+
+  Note: 'Derived CTE. Every source trip expands to two endpoint events.'
+}
+
+Table station_metrics {
+  station_id integer [pk]
+  station_name string [note: 'Most frequent observed name for the ID']
+  departures integer
+  arrivals integer
+  total_station_events integer
+  net_departures integer
+  net_imbalance_rate float
+
+  Note: 'Derived CTE. One row is one station for April-December 2017.'
+}
+
+Table gap_benchmark {
+  target_station_id integer [note: 'Station with largest absolute net_departures']
+  peer_station_count integer
+  peer_median_abs_imbalance_rate float
+  benchmark_abs_events float
+  excess_abs_events float
+
+  Note: 'Final comparison. Peers exclude the target and each has at least 10,000 events.'
+}
+
