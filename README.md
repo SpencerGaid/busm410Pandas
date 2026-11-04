@@ -9,7 +9,7 @@ Organizations can use data to understand how their processes are performing and 
 ## Project Information
 - **Team:** Pandas
 - **Team members:** Spencer Gaid and Avalon
-- **Dataset/source:** BigQuery (specific dataset to be added)
+- **Dataset/source:** BigQuery (specific dataset to be added)- NYC Citi Bike Trips 
 - **Business question:** How can the current process be improved using insights from the BigQuery data?
 
 ## Repository Contents
