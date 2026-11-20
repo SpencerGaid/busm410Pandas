@@ -1,39 +1,35 @@
-# CP2 model planning notes
+# CP2 station-level analysis plan
 
-## Current status
+## Question and grain
 
-CP1 remains a descriptive gap analysis. The station ranking, peer benchmark, value calculation, and data-quality checks have been rerun in BigQuery and matched the documented CP1 results. No predictive model has been fitted yet.
+Which station-level characteristics are associated with Citi Bike directional imbalance across the system?
 
-## Proposed model question
+The analysis will use the April–December 2017 trip-start window already documented for CP1. Each output row represents one station across that period. The target population is every station with at least one departure or arrival event; no 10,000-event threshold will be applied to the main CP2 panel.
 
-Can the team predict each station's directional imbalance one month ahead from prior Citi Bike trip activity, so an operations team can prioritize stations for review?
+## Outcome and candidate predictors
 
-- **Prediction unit:** one station-month.
-- **Target:** the following month's net imbalance rate, calculated as `(departures - arrivals) / (departures + arrivals)`.
-- **Decision supported:** create a station review list for the coming month.
-- **Interpretation limit:** trip-flow imbalance is not a direct measure of bicycle inventory, dock availability, customer outages, or operator rebalancing moves.
+- **Y, signed imbalance rate:** (departures - arrivals) / (departures + arrivals). Positive values indicate more departures; negative values indicate more arrivals. The denominator is station events, not unique rides.
+- **X1, casual-rider share:** station endpoint events from Customer rides divided by all station events.
+- **X2, weekend-ride share:** station endpoint events whose trip start date is Saturday or Sunday divided by all station events.
+- **X3, total rides involving the station:** distinct source trip rows with the station as either endpoint. A trip is counted once for a station even if its start and end station are the same. The SQL identifies a source row by its complete JSON representation; exact duplicate source rows therefore count once.
+- **Eligibility:** stations with a positive event denominator. A zero-denominator rate is undefined and is excluded; the panel SQL reports only stations with observed events.
 
-## Data coverage
+The measures are calculated over the same period, so this is a cross-sectional association analysis. It is not a forecast and does not establish that rider mix or volume causes imbalance. If CP2 requires prediction, the team must instead construct earlier-period predictors and a later-period target with a chronological holdout.
 
-The dated public-table history has 53 months from July 2013 through May 2018, with a six-month gap from October 2016 through March 2017. A further 5,828,994 table rows have null `starttime` and cannot be assigned to a month. See [data_coverage.md](data_coverage.md) and [01_monthly_coverage.sql](01_monthly_coverage.sql) for the observed counts and reproducible query.
+## Reproducible panel
 
-Never treat the six-month gap as zero-activity months or create lag features across it. For a one-month lag, April 2017 cannot be evaluated as a target because March 2017 is absent.
+Run [02_station_level_panel.sql](02_station_level_panel.sql) in BigQuery. It produces one row per station ID and includes station name as a display label. Verify the row count equals the number of distinct non-null station IDs in the endpoint event set and inspect the returned values before modeling.
 
-## Proposed chronological evaluation
+## Cleaning provenance and BigQuery evidence
 
-These are target months; a feature row uses the immediately preceding observed calendar month.
+Do not merge two different evidence sources:
 
-| Stage | Target months | Use |
-|---|---|---|
-| Initial training | August 2013–December 2014 | Fit candidate models using prior-month information. |
-| Validation | January–December 2015 | Choose a simple model and tune it without using the later holdout. |
-| Final test | May 2017–May 2018 | Evaluate on the later contiguous block; April 2017 is omitted because March 2017 is missing. |
+- The CP1 cleaning values in [the SQL process notes](../sql/README.md) are described as an independent reproduction from official monthly Citi Bike archives. They are not evidence that sql/01_data_quality.sql was run in BigQuery.
+- The historical monthly coverage file says its counts came from a user-run BigQuery query.
+- The CP1 benchmark audit entry records that Spencer ran sql/03_gap_benchmark.sql in BigQuery and checked its returned benchmark values.
 
-After selecting the model, the final fit may add eligible history through September 2016. Build training pairs only where feature and target months are consecutive. Do not use the final test block for model or threshold selection. The 2015 validation period can be included in the final fit after model selection.
+No BigQuery job URL or fresh result grid for sql/01_data_quality.sql is currently recorded here. Until Spencer runs that query and saves the job/result evidence, describe its cleaning counts as archive-reproduction results, not as BigQuery-verified results. The chat has no connected BigQuery execution tool.
 
-## Decisions still needed before building the station-month panel
+## Audit-log correction
 
-1. Set an activity eligibility rule and define what happens when a station has no events in a month; do not silently assign a zero rate when the denominator is zero.
-2. Define a baseline forecast and an evaluation metric suitable for the target.
-3. Confirm that the proposed time split satisfies the course's CP2 requirements, if a separate rubric specifies different periods.
-
+The audit log is reserved for checks Spencer actually performed. Delegating a task to the agent is an instruction/workflow event, not a check of the result. Do not invent new audit entries. Add a real entry only after Spencer has questioned, verified, or corrected a specific agent output, recording what he checked and the outcome; follow the approval process in [the audit protocol](../Other/audit_protocol.md).
