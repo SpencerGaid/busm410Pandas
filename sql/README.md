@@ -16,10 +16,13 @@ All queries use GoogleSQL in BigQuery against `bigquery-public-data.new_york_cit
 | 8 | [08_cp2_train_model.sql](08_cp2_train_model.sql) | Fit a linear regression because the outcome is numeric, retaining station as the row unit. |
 | 9 | [09_cp2_evaluate_and_weights.sql](09_cp2_evaluate_and_weights.sql) | Return model evaluation and the coefficient/p-value table. |
 | 10 | [10_cp2_monthly_split.sql](10_cp2_monthly_split.sql) | Break the station 281 gap down by month against monthly peer medians. |
+| 11 | [11_cp2_submission_snapshot.sql](11_cp2_submission_snapshot.sql) | Return the five checks, raw-data reconciliation, all nine monthly rows, fresh model evaluation, and coefficients in one result set. |
 
 ## CP2 run order
 
-Run Steps 06–07 first and save the five check rows plus the independent raw-data comparison in `model/cp2_results.md`. Then run Steps 08–09 and compare the fresh evaluation and `ML.ADVANCED_WEIGHTS` output with the recorded model card. Run Step 10 and add all nine monthly results; four months are currently recorded. The project ID in the CP2 queries is `busm-410-123`.
+Run Steps 06–07 first and save the five check rows plus the independent raw-data comparison in `model/cp2_results.md`. Then run Steps 08–09 and compare the fresh evaluation and `ML.ADVANCED_WEIGHTS` output with the recorded model card. Run Step 10 and add all nine monthly results; four months are currently recorded.
+
+If you can access the Google Cloud console but do not have a BigQuery connector in Codex, open [11_cp2_submission_snapshot.sql](11_cp2_submission_snapshot.sql), paste the whole file into a new query in project `busm-410-123`, and click **Run**. It returns a single result table with every outstanding output. Save or copy that result table and use it to complete `model/cp2_results.md`. This convenience query does not replace the individual numbered files used to reproduce each step. The project ID in the CP2 queries is `busm-410-123`.
 
 ## Scope and grain
 

@@ -24,7 +24,7 @@ One analysis row represents one station aggregated across the April–December 2
 
 ## CP2: Drivers and model
 
-CP2 examines whether earlier station characteristics are associated with the station-level April–December 2017 imbalance rate. The recorded model has 552 station rows and an `r2_score` of -0.01956, so it is not useful for business prediction. Its results, model card, and reproducible query sequence are in [model/cp2_results.md](model/cp2_results.md), [model/model_card.md](model/model_card.md), and [sql/README.md](sql/README.md). The results log still needs the five check outputs and the full nine-month comparison before submission.
+CP2 examines whether earlier station characteristics are associated with the station-level April–December 2017 imbalance rate. The recorded model has 552 station rows and an `r2_score` of -0.01956, so it is not useful for business prediction. Its results, model card, and reproducible query sequence are in [model/cp2_results.md](model/cp2_results.md), [model/model_card.md](model/model_card.md), and [sql/README.md](sql/README.md). To capture the remaining rubric outputs in one run, use [sql/11_cp2_submission_snapshot.sql](sql/11_cp2_submission_snapshot.sql) from the signed-in BigQuery console. The results log still needs the query output before submission.
 
 ## Explore the work
 
@@ -40,12 +40,13 @@ CP2 examines whether earlier station characteristics are associated with the sta
 | [sql/02_station_balance.sql](sql/02_station_balance.sql) | Converts trip endpoints into station events and ranks station imbalance. |
 | [sql/03_gap_benchmark.sql](sql/03_gap_benchmark.sql) | Compares the leading station with the median of the other qualifying stations. |
 | [sql/04_value.sql](sql/04_value.sql) | Converts the excess event count to a documented revenue-equivalent scale. |
-| [sql/05_chart_data.sql](sql/05_chart_data.sql) | Returns the two percentages plotted in the chart. |
+| [sql/05_chart_data.sql](sql/05_chart_data.sql) | Returns the two percentages shown in the chart. |
 | [sql/06_cp2_analysis_table.sql](sql/06_cp2_analysis_table.sql) | Builds the CP2 station-level analysis table. |
 | [sql/07_cp2_look_first.sql](sql/07_cp2_look_first.sql) | Runs the five table checks, raw-data reconciliation, and descriptive comparisons. |
 | [sql/08_cp2_train_model.sql](sql/08_cp2_train_model.sql) | Fits the CP2 linear regression model. |
 | [sql/09_cp2_evaluate_and_weights.sql](sql/09_cp2_evaluate_and_weights.sql) | Returns model evaluation and coefficient output. |
 | [sql/10_cp2_monthly_split.sql](sql/10_cp2_monthly_split.sql) | Breaks the station 281 gap down by month against monthly peer medians. |
+| [sql/11_cp2_submission_snapshot.sql](sql/11_cp2_submission_snapshot.sql) | Gathers the outstanding CP2 rubric outputs into one result table. |
 | [visuals/gap_chart.png](visuals/gap_chart.png) | Shows the target station and peer benchmark side by side. |
 | [Other/dataset_documentation.md](Other/dataset_documentation.md) | Records the source table, field meanings, grain, and official documentation links. |
 | [Other/citibike_erd.pdf](Other/citibike_erd.pdf) | Shows the source-to-analysis table flow. |

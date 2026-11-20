@@ -6,15 +6,11 @@ The CP2 station-level analysis table and linear regression have been built. The 
 
 The recorded table contains 552 stations, and the recorded quality output showed zero nulls in Y and all four X columns. The recorded model evaluation has an `r2_score` of -0.01956, so it is not useful for business prediction. See [cp2_results.md](cp2_results.md) and [model_card.md](model_card.md) for the comparisons, model output, interpretation, and limitations.
 
-## Evidence still to capture
+## Easiest way to capture the remaining output
 
-The repository includes reproducible queries for the remaining checks, but their full outputs are not yet recorded:
+If the BigQuery connector is unavailable but the Google Cloud console opens for you, run [11_cp2_submission_snapshot.sql](../sql/11_cp2_submission_snapshot.sql). It produces one result set containing the five checks, raw-data reconciliation, all nine monthly comparison rows, fresh evaluation measures, and coefficients. The result table can then be copied into [cp2_results.md](cp2_results.md).
 
-1. Run [sql/07_cp2_look_first.sql](../sql/07_cp2_look_first.sql) and record the five check rows and the independent raw-data reconciliation in [cp2_results.md](cp2_results.md).
-2. Run [sql/10_cp2_monthly_split.sql](../sql/10_cp2_monthly_split.sql) and record all nine months. Four months are currently captured.
-3. Rerun [sql/09_cp2_evaluate_and_weights.sql](../sql/09_cp2_evaluate_and_weights.sql) and compare the fresh values with the recorded model card before submission.
-
-Do not present expected or logically implied values as if BigQuery returned them. Keep the missing query outputs labeled as outstanding until they are captured.
+The repository does not have access to a signed-in Google Cloud session, so these outputs remain outstanding until the query is run successfully. Do not present expected or logically implied values as if BigQuery returned them.
 
 ## Historical coverage context
 
