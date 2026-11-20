@@ -37,3 +37,6 @@ Each official entry is a time Spencer checked the AI agent's work, grouped by th
 |---|---|---|---|---|
 | 1 | 2026-11-03 | Asked Spencer to paste the BigQuery results even though Spencer had already shared the completed job and asked for help. | Spencer replied, “that is why i need your help bro,” making clear that the agent should retrieve the result and carry the assignment forward. | **Improved.** The agent took ownership of the result retrieval, analysis, documentation, visual, and GitHub review branch. The standing instructions now tell agents to use available evidence before asking Spencer to repeat work. Spencer approved this entry on 2026-11-03. |
 
+# CP2 AI assistance disclosure
+
+AI assistance was used to draft and revise the CP2 SQL, organize the recorded BigQuery results, explain model fit and coefficient output, and prepare the repository changes. The student should independently review the analysis and rerun the included BigQuery queries before submission. This disclosure is not an official human audit entry.

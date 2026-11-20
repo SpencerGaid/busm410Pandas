@@ -2,7 +2,7 @@
 -- Y is the station's absolute directional imbalance rate in Apr-Dec 2017.
 -- X variables are measured in Sep 2016, before the outcome window; that month
 -- is the last observed month before the documented Oct 2016-Mar 2017 data gap.
-CREATE OR REPLACE TABLE `YOUR_PROJECT.busm410_cp2.station_analysis` AS
+CREATE OR REPLACE TABLE `busm-410-123.busm410_cp2.station_analysis` AS
 WITH outcome_events AS (
   SELECT e.station_id, e.is_departure
   FROM `bigquery-public-data.new_york_citibike.citibike_trips` t
