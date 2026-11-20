@@ -26,3 +26,6 @@ This analysis supports a **Citi Bike operations manager deciding which station t
 - Show transparent value math using linked 2017 sources.
 - State what the trip table can and cannot prove so a manager does not read the estimate as measured lost revenue.
 
+## CP2 expected ending
+
+**Kept** the CP1 expectation that station 281 deserved operational attention first. CP2 showed that September 2016 net imbalance is positively associated with the later station imbalance rate, but the model explains almost none of the station-to-station variation. The trip data alone cannot identify which operational change would fix the imbalance.
